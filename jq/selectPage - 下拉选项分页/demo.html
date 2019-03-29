@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./SelectPage/selectpage.css" type="text/css">
+
+</head>
+<body>
+    <input type="text" id="selectpage" >
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="./SelectPage/selectpage.js" ></script>
+<script>
+    var data = [
+        {id:1 ,name:'Chicago Bulls',desc:'芝加哥公牛'},
+        {id:2 ,name:'Cleveland Cavaliers',desc:'克里夫兰骑士'},
+        {id:3 ,name:'Detroit Pistons',desc:'底特律活塞'},
+        {id:4 ,name:'Indiana Pacers',desc:'印第安纳步行者'},
+        {id:1 ,name:'Chicago Bulls',desc:'芝加哥公牛'},
+        {id:2 ,name:'Cleveland Cavaliers',desc:'克里夫兰骑士'},
+        {id:3 ,name:'Detroit Pistons',desc:'底特律活塞'},
+        {id:4 ,name:'Indiana Pacers',desc:'印第安纳步行者'},
+        {id:1 ,name:'Chicago Bulls',desc:'芝加哥公牛'},
+        {id:2 ,name:'Cleveland Cavaliers',desc:'克里夫兰骑士'},
+        {id:3 ,name:'Detroit Pistons',desc:'底特律活塞'},
+        {id:4 ,name:'Indiana Pacers',desc:'印第安纳步行者'},
+        {id:1 ,name:'Chicago Bulls',desc:'芝加哥公牛'},
+        {id:2 ,name:'Cleveland Cavaliers',desc:'克里夫兰骑士'},
+        {id:3 ,name:'Detroit Pistons',desc:'底特律活塞'},
+        {id:4 ,name:'Indiana Pacers',desc:'印第安纳步行者'}
+    ];
+
+    $.ajax({
+        type:"post",
+        url:"http://localhost:3000/data",
+        data:{pageSize:5,pageNumber:1},
+        success:function(data){
+            console.log(data , "1231313");
+        }
+    })
+        //init SelectPage
+    $('#selectpage').selectPage({
+        data : "http://localhost:3000/data",
+        eAjaxSuccess : function(data){
+            console.log(data , "11")
+            return data ? data : undefined;
+        },
+        showField : 'desc',
+        keyField : 'id',
+        pageSize : 5
+    });
+</script>
+</html>
