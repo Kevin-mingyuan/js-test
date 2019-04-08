@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="main" style="width: 830px;height:260px;"></div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="./echarts.min.js"></script>
+<script>
+var myChart = echarts.init(document.getElementById('main'));
+
+myChart.setOption({
+    title: {
+        text: '行情走势',
+        show: true,
+        textStyle: {
+            color: "#1cbcff",
+            fontWeight: 700,
+            fontSize: 14
+        },
+    },
+    tooltip: {
+        show: true,
+        trigger: 'axis'
+    },
+    legend: { //图例组件
+        data: [],//ajax
+        right: 30,
+        top: 0,
+        selected: {
+            
+        },
+    },
+    grid: { //绘制网格 
+        left: '3%', //距离容器的边距
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+        show: true,
+        tooltip: {
+            trigger: "axis",
+        },
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [],//ajax
+        show: true,
+        splitLine: {
+            show: true,
+            lineStyle: {
+                color: ["rgba(28, 188, 255, 0.3)", "rgba(28, 188, 255, 0.3)"],
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        show: true,
+        splitLine: {
+            show: true,
+            lineStyle: {
+                color: ["rgba(28, 188, 255, 0.3)", "rgba(28, 188, 255, 0.3)"],
+            }
+        }
+    },
+    series:[] //ajax
+});
+
+
+    $.ajax({
+        type:"get",
+        url:"http://localhost:9000/",
+        success(data){
+            var allArr = data.data.data;
+
+            var legendData = [];
+            var seriesData = [];
+
+            console.log(data);
+            $.each(allArr,function(i,item){ //两个参数，第一个参数表示遍历的数组的下标，第二个参数表示下标对应的值
+                console.log(item)
+                legendData.push(item.name);
+                    seriesData.push({
+                        name:item.name,
+                        type:"line",
+                        data:item.data
+                    })
+            });
+            console.log(legendData , seriesData)
+            myChart.setOption({
+                legend: { //图例组件
+                    data: legendData,//ajax 分类个数
+                },
+                xAxis: {
+                    data: data.data.date,//ajax x日期
+                },
+                series:seriesData //ajax 种类内容
+            });
+        }
+    })
+
+    // var arr1 = []
+    // var month = new Date().toLocaleDateString().split("/")[1] < 10 ? "0"+new Date().toLocaleDateString().split("/")[1] : new Date().toLocaleDateString().split("/")[1] 
+    // var day = new Date().toLocaleDateString().split("/")[2]   < 10 ? "0"+new Date().toLocaleDateString().split("/")[2] : new Date().toLocaleDateString().split("/")[2]
+
+    // arr1.push(new Date().toLocaleDateString().split("/")[0] +"-" + month + "-" + day)
+    // console.log(new Date().toLocaleDateString().split("/")[0] , month , day , arr1)
+</script>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        <div id="main" style="width: 830px;height:260px;"></div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="./echarts.min.js"></script>
+<script>    
+var myChart = echarts.init(document.getElementById('main'));
+
+var option1 = myChart.getOption();
+myChart.clear();
+
+myChart.setOption({
+        color:['#1cbcff','#e9ac08','#f27316','#8407b3'], 
+        legend: {
+            selectedMode: 'multiple', //单选 single / duo multiple
+            right:30,
+            top:0,
+            borderColor:"blue",
+            pageIcons:"blue",
+            selected:{
+                "型钢":false,
+                "圆钢":false,
+                "槽钢":false
+            },
+            
+        },
+        grid: { //绘制网格 
+            left: '3%',//距离容器的边距
+            right: '4%',
+            bottom: '3%',
+            containLabel: true,
+            show:true,
+            tooltip:{
+                trigger:"axis",
+            },
+        },
+        tooltip: {
+            show:true,
+            trigger: 'axis'
+        },
+        // dataset: {
+        //     source: [
+        //         ['product', '角钢', '工字钢', '型钢','圆钢'],
+        //         ['2019-4-7', 4330, 8580, 9370,1111], 
+        //         //  x轴       角钢 工字钢 型钢 圆钢
+        //         ['2019-4-8', 8310, 7340, 5510,2222],
+        //         ['2019-4-9', 8640, 6520, 8250,3333],
+        //         ['2019-4-10', 7240, 5390, 3910,4444]
+        //     ]
+        // },
+        xAxis: {
+            type: 'category',
+            show:true,
+            boundaryGap: false,
+            splitLine:{
+        　　　　show:true,
+                lineStyle:{
+                    color:["rgba(28, 188, 255, 0.3)","rgba(28, 188, 255, 0.3)"],
+                }
+        　　 }
+        },
+        yAxis: {
+            type: 'value',
+            show:true,
+            splitLine:{
+        　　　　show:true,
+                lineStyle:{
+                    color:["rgba(28, 188, 255, 0.3)","rgba(28, 188, 255, 0.3)"],
+                }
+        　　 }
+        },
+        // series: [
+        //     {type: 'line' , markLine: { animation:true,animationThreshold:10000000}},
+        //     {type: 'line', markLine: { animation:true,animationThreshold:10000000}},
+        //     {type: 'line', markLine: { animation:true,animationThreshold:10000000}},
+        //     {type: 'line', markLine: { animation:true,animationThreshold:10000000}},
+        // ]
+    });
+    myChart.showLoading();    //隐藏加载动画
+
+    $.ajax({
+        type:"get",
+        url:"http://localhost:9000/",
+        success(data){
+         myChart.hideLoading();    //隐藏加载动画
+            console.log(data);
+
+            myChart.setOption({
+                legend:{
+                    tooltip:{
+
+                    }
+                },
+                dataset: {
+                    dimensions:data.dimensions,
+                    source : data.source
+                },
+                series: [
+                    {type: 'line' ,},
+                    {type: 'line',},
+                    {type: 'line',},
+                    {type: 'line',},
+                    {type: 'line',},
+                ]
+            })
+        }
+    })
+</script>
+</html>
