@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var singleton = function( fn ){
+        var result;
+        return function(){
+            return result || ( result = fn .apply( this, arguments ) );
+        }
+    }
+ 
+    var createMask = singleton( function(){
+    
+        return document.body.appendChild( document.createElement('div') );
+    
+    })
+    console.log(createMask() , "11")
+</script>
+</html>
