@@ -8,9 +8,8 @@
             height: 100px;
             background: red;
             position: relative;
-            animation: mymove 5s infinite;
-            -webkit-animation: mymove 5s infinite;
-            /*Safari and Chrome*/
+            animation: mymove 5s infinite linear;
+            
         }
 
         @keyframes mymove {
@@ -22,16 +21,7 @@
                 left: 200px;
             }
         }
-
-        @-webkit-keyframes mymove{
-            from {
-                left: 0px;
-            }
-
-            to {
-                left: 200px;
-            }
-        }
+     
     </style>
 </head>
 
