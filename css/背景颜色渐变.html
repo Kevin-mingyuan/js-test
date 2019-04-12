@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div{
+            background: #0299d8;
+            background: linear-gradient(45deg, #5a3694 0, #13bdce 33%, #0094d9 66%, #6fc7b5 100%); /*渐变*/
+            background-size: 400%;
+            background-position: 0 100%;
+            animation: gradient 7.5s ease-in-out infinite;
+            width: 100px;
+            height: 100px;
+        }
+        @keyframes gradient {
+            50% {
+                background-position: 100% 0
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+            111
+    </div>
+</body>
+</html>
