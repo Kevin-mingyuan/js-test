@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var bw = document.documentElement.style.fontSize = (document.documentElement.clientWidth)/15 +"px";
+        console.log(document.documentElement.clientWidth / 15) 
+    </script>
+</head>
+<body>
+    <div id="main">
+
+    </div>
+</body>
+    <script>
+        console.log(bw)
+        var Main = document.getElementById("main");
+        Main.style.width = bw / 15 + 'rem';
+        Main.style.height = '100px';
+        Main.style.background = 'red';
+
+        //可以用sass适配 $sc:15; 量出来的px 除以 15 + rem
+    </script>
+</html>
