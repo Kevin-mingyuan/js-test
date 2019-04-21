@@ -11,8 +11,10 @@ define(['jquery','show'],function($,show){
         $('#box').html(`<h1>hell require</h1>`);
         $('#box').click(function(){
             show.alertLL();
+            show.do();
         })
         show.do();
     })
 
 })
+console.log(require)
