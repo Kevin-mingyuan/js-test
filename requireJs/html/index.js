@@ -17,4 +17,3 @@ define(['jquery','show'],function($,show){
     })
 
 })
-console.log(require)
