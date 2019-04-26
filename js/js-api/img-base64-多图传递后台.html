@@ -25,9 +25,8 @@
                 console.log(ev.target.result , '64646446');
                 baseImg.push(ev.target.result);
 
-
                 console.log(baseImg , 'arr'); //将每个图片转化为base64 传入数组 post发送到后台
-
+                createImg(ev.target.result)
 
                 var base64Str = ev.target.result.split(",")[1];
                 //console.log(base64Str)
