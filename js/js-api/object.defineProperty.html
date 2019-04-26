@@ -11,6 +11,14 @@
         Object.defineProperty是ES5中的属性，
         传入一个描述对象即可描述一个对象的属性的特性。
         我们用Object.defineProperty来实现对象读写时执行一些特定操作（比如发布属性更新的消息）。
+
+        value:属性的值(不用多说了)
+
+        writable:如果为false，属性的值就不能被重写,只能为只读了
+
+        configurable:总开关，一旦为false，就不能再设置他的（value，writable，configurable）
+
+        enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
     </pre>
 </body>
 <script>
@@ -33,14 +41,16 @@
     //有bug target => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cant_redefine_property
     const data = {
         a:1,
-        b:2
+        b:2,
+        c:3
     }
 
     Object.keys(data).forEach(function(key,val){
-        console.log(key ,val);
-        //为什么设置新的key ， 要设置旧的key为不可枚举
+        // console.log(key ,val);
+        //为什么设置新的key ， 要设置旧的key为不可枚举  因为重新定义一个属性:属性值 赋值之前的对象
         const newKey = key.slice(1);
-        console.log(newKey , 'set newKey')
+
+        console.log(newKey , 'set newKey1111')
         Object.defineProperty(data,newKey,{
             get(){
                 console.log(`read data property:${newKey}`);
@@ -48,7 +58,7 @@
                 return data[key]
             },
             set(val){
-                console.log(`set data property ${newKey} , value${val}`);
+                console.log(`set data property ${newKey},this指向${this} , value${val}`);
 
                 this[key] = val
             },
@@ -58,16 +68,15 @@
 
         Object.defineProperty(data,key,{
             enumerable:false, //设置不可枚举
-            configurable: true
         })
     });
 
     console.log(data, 'before data');
 
-    data.a = 11;
-    data.b = 22;
+    // data.a = 11;
+    // data.b = 22;
 
-    console.log(data, 'after data')
-
+    // console.log(data, 'after data')
+    
 </script>
 </html>
