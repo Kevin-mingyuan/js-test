@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-</head>
+</head> 
 <body>
     <input type="file" id="file" value="" onchange="handleUpload()" />
 </body>
@@ -25,7 +25,7 @@
         var formData = new FormData();
         var files = document.querySelector('#file').files;
         var modelName = document.querySelector('#file').value.trim();
-        console.log(files ,modelName )
+        console.log(files ,modelName)
 
         if ( files.length === 0 ) {
             alert("请先选择文件夹");
@@ -65,7 +65,6 @@
     */
 
     }
-
 </script>
 </html>
 

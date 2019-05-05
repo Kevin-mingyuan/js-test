@@ -37,6 +37,7 @@
                 }
                 //执行获取属性操作时候 添加watcher的操作
                 //。。。
+                console.log(target,key,receiver);
                 return Reflect.get(target,key,receiver); //执行引擎默认行为
             }catch(error){
                 console.log(error);
@@ -54,6 +55,7 @@
                 //继续发布watcher
                 //...
                 //继续执行默认操作
+                console.log(target,key,value,reveiver);
                 return Reflect.set(target, key, value, receiver);
             }catch(error){  
                 console.log(error)
