@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>压缩图片demo</title>
+</head>
+
+<body>
+	<img id="img" src="">
+	<input id="file" type="file" onchange="Tobase64()">
+</body>
+
+<script>
+//转换格式为base64
+function Tobase64(){
+    let fileObj = document.getElementById('file').files[0]  //获取文件对象
+    let reader = new FileReader()   //新建一个FileReader对象
+    reader.readAsDataURL(fileObj)   //将读取的文件转换成base64格式
+    reader.onload = function(e) {
+        let base64 = e.target.result;
+        console.log(base64) //转换为base64
+        document.getElementById('img').src = e.target.result    //将img标签的src换成base64格式，并显示出来
+    }
+}
+</script>
+</html>
