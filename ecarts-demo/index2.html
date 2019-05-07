@@ -66,6 +66,56 @@ myChart.setOption({
             lineStyle: {
                 color: ["rgba(28, 188, 255, 0.3)", "rgba(28, 188, 255, 0.3)"],
             }
+        },
+        min: function(value) {
+            var minNum = Math.ceil(parseInt(value.min));
+            console.log(minNum , '最小值')
+            var minNumLength = minNum.toString().length;
+            if(minNumLength == 4){
+                var qianwei = Math.ceil(parseInt((value.min % 10000) / 1000));
+                var baiwei=Math.ceil(parseInt((value.min % 1000) / 100));
+                var shiwei=Math.ceil(parseInt((value.min%100)/10)); 
+                var gewei=Math.ceil(parseInt(value.min%10)); 
+                console.log(qianwei , baiwei, shiwei , gewei);
+                var num = parseInt(String(shiwei) + String(gewei));
+                //判断不为100;
+                if(num != 00){
+                    var newMinNum = minNum - (String(shiwei) + String(gewei)) -200;
+                    console.log(newMinNum , 'new最小值');
+                    return newMinNum;
+                }
+
+                return minNum -200;
+            }else{
+                return Math.ceil(parseInt(value.min));
+            }
+
+        },
+        max: function(value) {
+            var maxNum = Math.ceil(parseInt(value.max));
+            console.log(maxNum , '最大值')
+            var maxNumLength = maxNum.toString().length;
+            if(maxNumLength == 4){
+                var qianwei = Math.ceil(parseInt((value.max % 10000) / 1000));
+                var baiwei=Math.ceil(parseInt((value.max % 1000) / 100));
+                var shiwei=Math.ceil(parseInt((value.max%100)/10)); 
+                var gewei=Math.ceil(parseInt(value.max%10)); 
+                var numm = parseInt(String(shiwei) + String(gewei));
+                console.log(qianwei , baiwei, shiwei , gewei);
+
+                //判断不为100;
+                if(numm != 00){
+                    var newMinNumm = maxNum - (String(shiwei) + String(gewei)) + 200;
+                    console.log(newMinNumm , 'new最大值');
+
+                    return newMinNumm;
+                }
+                return maxNum + 200;
+
+            }else{
+                return Math.ceil(parseInt(value.max));
+            }
+
         }
     },
     series:[] //ajax
