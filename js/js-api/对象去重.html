@@ -40,10 +40,10 @@
                 obj[arr1[j]]++;
             }
         }
-        return newArr;
+        return {newArr,obj}; //return one obj
     }
 
-    console.log(quchong(arr1));
+    console.log(quchong(arr1).newArr , quchong(arr1).obj);
 </script>
 <script>
     function swap(a , b) {  
