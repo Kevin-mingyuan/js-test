@@ -12,7 +12,6 @@ function getCookie(key){
             return newArr[1];
         }
     }
-    return ""; //如果没有返回空
 }
 function removeCookie(key){
     setCookie(key,1,-1);

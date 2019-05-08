@@ -16,7 +16,7 @@ class Home extends React.Component{
             <div className="hello">
                 <Link to="/home"> hello home </Link>
                 <Link to="/home2"> hello home2 </Link>
-                <p>1111111111</p>
+                <p>2222222</p>
             </div>
         )
     }

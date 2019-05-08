@@ -15,6 +15,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Home from "./components/home/home.jsx";
-
-ReactDOM.render(<Home />, document.getElementById('root'));
+// import Home from "./components/home/home.jsx";
+import App from "./App.jsx";
+ReactDOM.render(<App />, document.getElementById('root'));

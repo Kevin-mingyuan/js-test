@@ -58,7 +58,7 @@
         var nt = new Date().getTime();//获取当前时间
         var pertime = (nt-ot)/1000; //计算出上次调用该方法时到现在的时间差，单位为s
         ot = new Date().getTime(); //重新赋值时间，用于下次计算
-        
+        console.log(evt.loaded , oloaded)
         var perload = evt.loaded - oloaded; //计算该分段上传的文件大小，单位b       
         oloaded = evt.loaded;//重新赋值已上传文件大小，用以下次计算
     
@@ -80,6 +80,7 @@
         time.innerHTML = '，速度：'+speed+units+'，剩余时间：'+resttime+'s';
             if(bspeed==0)
             time.innerHTML = '上传已取消';
+        console.log(speed , 'm/s')
     }
     
     //上传成功响应
@@ -98,5 +99,18 @@
     function cancleUploadFile(){
         xhr.abort();
     }
+</script>
+<script>
+    // https://blog.csdn.net/qwe502763576/article/details/79840158
+    // progress事件会在浏览器接收新数据期间周期性地触发。
+    // 而onprogress事件处理程序会接收到一个event对象，
+    // 其target属性是XHR对象，但包含着三个额外的属性：
+    // lengthComputable、loaded和total。
+    // 其中，lengthComputable是一个表示进度信息是否可用的布尔值，
+    // loaded表示已经接收的字节数，total表示根据Content-Length响应头部确定的预期字节数.
+    // 为确保正常执行，必须在调用open()方法之前添加onprogress事件处理程序。
+    // 在前面的例子中，每次触发progress事件，
+    // 都会以新的状态信息更新HTML元素的内容。
+    // 当然也可以配合H5的标签<progress value="5" max="10">来实现进度条。
 </script>
 </html>

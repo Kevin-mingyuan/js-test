@@ -10,15 +10,15 @@
     
 </body>
 <script>
-    //table分页页码
+    //table分页页码 每页展示5
     let page1 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-    function page(pageNumber,pageSize){
-        return page1.slice((pageNumber - 1)*pageSize,pageNumber*5);
+    function page(pageNumber,pageSize){ //(当前页码-1)*每页展示数量 , 当前页码*每页展示的数量
+        return page1.slice((pageNumber - 1)*pageSize,pageNumber*pageSize);
     }
     console.log(page(2,5));
 
 
-    //无线滚动全部页码
+    //无线滚动全部页码 每页展示5
     let page2 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
     function page3(index){
         return page1.slice(index*0,index*5);

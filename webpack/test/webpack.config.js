@@ -6,7 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); /
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //js压缩
 
 module.exports = {
-    // mode: 'production',
+    mode: 'development', // development ||  production
     entry: './src/index.js',
     output: {
         filename:"[name].js",
@@ -28,6 +28,7 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
         　　 　　    { loader:"css-loader" },
+                    {loader :"sass-loader"}
                     // {
                     //     loader: 'postcss-loader',
                     //     options: {
@@ -35,9 +36,8 @@ module.exports = {
                     //         plugins: loader => [autoprefixer({ browsers: ['> 0.15% in CN'] })]
                     //     }
                     // },
-                    {loader :"sass-loader"}
                 ]
-              }
+            }
 
         ]
     },

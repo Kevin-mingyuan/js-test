@@ -6,13 +6,16 @@
 </head>
 
 <body>
-	<img id="img" src="">
-	<input id="file" type="file" onchange="Tobase64()" />
+	<img id="img" src="" />
+    <input id="file" type="file" onchange="Tobase64()" />
+    <button id="update">update</button>
+    <div id="progress"></div>
 </body>
-
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script>
-//转换格式为base64
-function Tobase64(){
+    var oProgress = document.getElementById('progress');
+    //转换格式为base64
+    function Tobase64(){
     let fileObj = document.getElementById('file').files[0]  //获取文件对象
     console.log(fileObj);
     let reader = new FileReader()   //新建一个FileReader对象
@@ -21,13 +24,9 @@ function Tobase64(){
         let base64 = e.target.result; //base64 缺点=> 使用base64会使数据量变大 因为编码方式 会使比原来字节多33.3% 编码越多 查看起来越卡
         // console.log(base64) //转换为base64
         document.getElementById('img').src = e.target.result    //将img标签的src换成base64格式，并显示出来
+        return base64;
     }
-    var xhr = new XMLHttpRequest(); //创建httprequest对象
-
-    xhr.upload.addEventListener('progress',function(e){
-        console.log(e , 1123);
-    })
-    console.log(xhr);
+   
     /*
         上传formdata =>
 
@@ -75,5 +74,44 @@ function Tobase64(){
 
     */
 }
+
+    $('#update').click(function(){
+        // ajax => metods
+        // $.ajax({
+        //     xhr: function(){
+        //         var xhr = new window.XMLHttpRequest();
+        //         //Upload progress
+        //         xhr.upload.addEventListener("progress", function(evt){
+        //         if (evt.lengthComputable) {
+        //             var percentComplete = evt.loaded / evt.total;
+        //             console.log("Upload ", Math.round(percentComplete*100) + "% complete.");
+        //         }
+        //         }, false);
+        //         return xhr;
+        //     },
+        //     type: 'POST',
+        //     url: "/echo/json/123",
+        //     data: {json:' JSON.stringify(new Array(200000))'} //模拟的数字参数 传递到后台
+        // });
+
+
+        // js => metods
+        // var xhr = new XMLHttpRequest(); //创建httprequest对象
+        // xhr.upload.addEventListener('progress',function(evt){
+        //     console.log(evt , 1123);
+        //     if (evt.lengthComputable){
+        //         oProgress.innerHTML = evt.loaded / evt.total;
+        //         var percentComplete = parseInt((evt.loaded / evt.total) * 100);
+        //         console.log("Upload: " + percentComplete + "% complete")
+        //     }
+        // },false)
+        // xhr.open("POST", "_code/upload.php",true);
+        // xhr.send('Tobase64()')
+        // console.log(xhr);
+
+    })
+</script>
+<script>
+    // http://www.ruanyifeng.com/blog/2012/08/file_upload.html
 </script>
 </html>
