@@ -11,8 +11,9 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename:"[name].js",
-        path: path.resolve(__dirname, './src/dist')
+        path: path.resolve(__dirname, './dist')
     },
+    //模式加载器
     module: {
         rules: [
             {
@@ -39,21 +40,23 @@ module.exports = {
                     // },
                 ]
             }
-
         ]
     },
+    //插件
     plugins: [
         // new MiniCssExtractPlugin({ //判断生产模式/开发模式
         //   filename: devMode ? '[name].css' : '[name].[hash].css', // 设置最终输出的文件名
         //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
         // })
         
-        new MiniCssExtractPlugin({  //抽离一个单个css
+        new MiniCssExtractPlugin({  //抽离一个单个css 
             filename: '[name][hash].css',
             chunkFilename: '[id][hash].css'
         })
     ],
+    // 自定义一些优化打包策略。
     optimization: {
+        // minimize默认为true，效果就是压缩js代码。
         minimizer: [
             new OptimizeCSSAssetsPlugin({}), // 压缩css
             new UglifyJsPlugin({ //压缩js
@@ -63,7 +66,7 @@ module.exports = {
             })
         ]
     },
-
+    //热更新
     devServer:{
         contentBase: "dist", //监听打包后文件夹 自动找寻html文件
         hot:true, //不用刷新也可以更替
