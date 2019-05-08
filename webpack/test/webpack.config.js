@@ -1,4 +1,5 @@
 const path = require('path');
+console.log(__dirname);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //设置css 抽离为一个单独的css
 // const devMode = process.env.NODE_ENV !== 'production'; // 判断当前环境是开发环境还是 部署环境，主要是 mode属性的设置值。
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); //压缩css
@@ -64,8 +65,10 @@ module.exports = {
     },
 
     devServer:{
-        contentBase: 'dist', //监听打包后文件夹 自动找寻html文件
-        compress: true,
+        contentBase: "dist", //监听打包后文件夹 自动找寻html文件
+        hot:true, //不用刷新也可以更替
+        compress: true, //是否启用压缩
+        open:true,
         port: 9000
     }
 };
