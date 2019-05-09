@@ -49,8 +49,17 @@ module.exports = {
         //   filename: devMode ? '[name].css' : '[name].[hash].css', // 设置最终输出的文件名
         //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
         // })
+       
         new HtmlWebpackPlugin({ //index.html模板  在index.html 写入节点 <div id="root"></div>
-            template:'index.html'
+            title:"hello world",
+            // template:path.resolve(__dirname,"./dist/index.html"),
+            template:"index.html",
+            inject: 'body', //inject，默认值是true，参数有 true || 'head' || 'body' || false
+            // showErrors: true,
+            // hash: true,
+            // minify: {
+            //     removeAttributeQuotes: true
+            // }
         }),
 
         new MiniCssExtractPlugin({  //抽离一个单个css 
@@ -73,11 +82,11 @@ module.exports = {
     },
     //热更新
     devServer:{
-        contentBase: "dist", //监听打包后文件夹 自动找寻html文件
+        contentBase: "./dist", //监听打包后文件夹 自动找寻html文件
         hot:true, //不用刷新也可以更替
         compress: true, //是否启用压缩
         open:true,
-        port: 9000
+        port: 3000
     }
 };
 
