@@ -11,7 +11,7 @@ module.exports = {
     mode: 'development', // development ||  production
     entry: './src/index.js',
     output: {
-        filename:"[name].js",
+        filename:"[name][hash].js",
         path: path.resolve(__dirname, './dist')
     },
     //模式加载器
