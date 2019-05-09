@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //设置css 抽
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); //压缩css
 // const autoprefixer = require('autoprefixer'); //postcss压缩
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //js压缩
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //创建inxde.html 模板
 
 module.exports = {
     mode: 'development', // development ||  production
@@ -48,11 +49,15 @@ module.exports = {
         //   filename: devMode ? '[name].css' : '[name].[hash].css', // 设置最终输出的文件名
         //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
         // })
-        
+        new HtmlWebpackPlugin({ //index.html模板  在index.html 写入节点 <div id="root"></div>
+            template:'index.html'
+        }),
+
         new MiniCssExtractPlugin({  //抽离一个单个css 
             filename: '[name][hash].css',
             chunkFilename: '[id][hash].css'
         })
+
     ],
     // 自定义一些优化打包策略。
     optimization: {

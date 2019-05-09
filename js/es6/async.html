@@ -35,10 +35,11 @@
 
     let howLongToSleep = async function () {
         // 在这里使用起来就像同步代码那样直观 只能写异步函数；
+        //执行顺序 先打印 start  然后三秒后打印sleep()函数     然后再两秒后打印sleep2()函数
         console.time();
-        console.log('start');
-        await sleep(3000);  //sleep 为一个执行需要耗费 3s 的函数
-        await sleep2(2000);
+        console.log('start'); //立刻执行
+        await sleep(3000);  //sleep 为一个执行需要耗费 3s 的函数 3秒后执行  
+        await sleep2(2000);  //两秒后执行
         console.timeEnd('end');
     };
     

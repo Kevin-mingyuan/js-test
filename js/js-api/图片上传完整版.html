@@ -35,10 +35,8 @@
     $("#myfile").change(function () {
         //获取文件的value值
         file = $("#myfile").val(); //本地路径名字 磁盘\文件夹\文件名字
-
         //获取文件名+扩展名
         fileName = file.split("\\").pop(); //文件名字
-
         //获取文件名
         fileName = fileName.substring(0, fileName.lastIndexOf("."));
         //获取文件的扩展名
@@ -47,7 +45,6 @@
         $("#myfileName").html("");
         $("#myfileName").append(`<p style='color: red'>文件名：${fileName}${fileExt}</p>`);
         // $("#div").append("<p style='color: red'>扩展名"+fileExt+"</p>");
-
         //转化为base64格式
         var file = this.files[0];                
         // 确认选择的文件是图片                
@@ -62,7 +59,6 @@
             };
         }
     })
-
 </script>
 </html>
 

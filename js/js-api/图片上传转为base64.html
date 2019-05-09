@@ -2,7 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>压缩图片demo</title>
+    
 </head>
 
 <body>
@@ -14,7 +17,9 @@
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script>
     var oProgress = document.getElementById('progress');
-    //转换格式为base64
+    //创建FromData
+    var formData = new FormData();
+    //转化base64
     function Tobase64(){
     let fileObj = document.getElementById('file').files[0]  //获取文件对象
     console.log(fileObj);
@@ -24,10 +29,18 @@
         let base64 = e.target.result; //base64 缺点=> 使用base64会使数据量变大 因为编码方式 会使比原来字节多33.3% 编码越多 查看起来越卡
         // console.log(base64) //转换为base64
         document.getElementById('img').src = e.target.result    //将img标签的src换成base64格式，并显示出来
-        return base64;
+        
     }
    
-    /*
+    return fileObj; //返回对象 
+}
+    //点击提交
+    $('#update').click(function(){
+        formData.append("file",Tobase64()); //base64 放入formdata
+        console.log(formData.get('file') , 'alllllllllllllll'); //发送formdata
+        console.log(Tobase64() ,"1q23132");
+
+        /*
         上传formdata =>
 
         processData会默认将data转化为字符串，所以需要配置为false，不进行处理。
@@ -38,7 +51,7 @@
         $.ajax({
             url:'',
             type:'post',
-            data:fileObj,
+            data:formData,
             processData:false, //只对post生效 表示跨域请求时是否需要使用凭证
             contentType:false,
             success:function(data){
@@ -73,14 +86,14 @@
         httpDemo.send(formData);  //发送请求
 
     */
-}
 
-    $('#update').click(function(){
+
+
         // ajax => metods
         // $.ajax({
         //     xhr: function(){
         //         var xhr = new window.XMLHttpRequest();
-        //         //Upload progress
+        //         //Upload progress  evt.loaded => 上传到服务器接收的数据   evt.total => 所有的数据
         //         xhr.upload.addEventListener("progress", function(evt){
         //         if (evt.lengthComputable) {
         //             var percentComplete = evt.loaded / evt.total;
