@@ -6,7 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); /
 // const autoprefixer = require('autoprefixer'); //postcss压缩
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //js压缩
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //创建inxde.html 模板
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development', // development ||  production
     entry: './src/index.js',
@@ -50,10 +50,12 @@ module.exports = {
         //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
         // })
        
+        new CleanWebpackPlugin(),
+
         new HtmlWebpackPlugin({ //index.html模板  在index.html 写入节点 <div id="root"></div>
             title:"hello world",
             // template:path.resolve(__dirname,"./dist/index.html"),
-            template:"index.html",
+            template:"index.html", //需要在根目录下的index.html 写入节点<div id="root"></div>
             inject: 'body', //inject，默认值是true，参数有 true || 'head' || 'body' || false
             // showErrors: true,
             // hash: true,
