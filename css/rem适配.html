@@ -13,15 +13,16 @@
 <body>
     <div id="main">
 
-    </div>
+    </div>                   
 </body>
-    <script>
-        console.log(bw)
-        var Main = document.getElementById("main");
-        Main.style.width = bw / 15 + 'rem';
-        Main.style.height = '100px';
-        Main.style.background = 'red';
+<script>
+    console.log(bw)
+    var Main = document.getElementById("main");
+    // Main.style.width = bw / 25 + 'rem';
+    Main.style.width = 30 / 25 + 'rem';
+    Main.style.height = 30 / 25 + 'rem';
+    Main.style.background = 'red';
 
-        //可以用sass适配 $sc:15; 量出来的px 除以 15 + rem    1rem === 25px
-    </script>
+    //可以用sass适配 $sc:25; 量出来的px 除以 25 + rem    1rem === 25px
+</script>
 </html>

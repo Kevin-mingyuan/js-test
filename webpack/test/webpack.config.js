@@ -6,7 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); /
 // const autoprefixer = require('autoprefixer'); //postcss压缩
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //js压缩
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //创建inxde.html 模板
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin'); //每次打包清楚上次打包的文件
 module.exports = {
     mode: 'development', // development ||  production
     entry: './src/index.js',
