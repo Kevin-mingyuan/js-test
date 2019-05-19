@@ -1,5 +1,5 @@
 const express = require("express");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false })); //extended为false表示使用querystring来解析数据，这是URL-encoded解析器
@@ -91,10 +91,10 @@ const data = [
 
 app.post("/data", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-
+    // console.log(req);
     console.log(req.body);
 
-    let { pageSize, pageNumber, parent_id } = req.body; //每页展示 , 点击页码
+    let { pageNumber , pageSize, parent_id } = req.body; // 点击页码 , 每页展示  
 
     res.send({
       pageSize: 5,
