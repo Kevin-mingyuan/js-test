@@ -15,6 +15,8 @@
 				<button @click="changeMsg">
 					Change the Message
 				</button>
+				<hr />
+				<div ref="test" data-id="001">test</div>
 			</div>
 		</div>
 	</body>
@@ -29,17 +31,23 @@
 				msg2: '',
 				msg3: ''
 			},
+			mounted(){
+				console.log(this.$refs.test.getAttribute("data-id"));
+			},
 			methods: {
 				changeMsg() {
 					this.$refs.msgDiv.style.background = "red";
-					this.msg = "Hello world."
-					this.msg1 = this.$refs.msgDiv.innerHTML
+					this.msg = "Hello world.";
+					this.msg1 = this.$refs.msgDiv.innerHTML;
 					
 					// dom 更新后的值
 					this.$nextTick(() => {
-						this.msg2 = this.$refs.msgDiv.innerHTML
+						this.msg2 = this.$refs.msgDiv.innerHTML;
 					})
-					this.msg3 = this.$refs.msgDiv.innerHTML
+					this.msg3 = this.$refs.msgDiv.innerHTML;
+				},
+				getAtttribute(){
+					
 				}
 			}
 		})
