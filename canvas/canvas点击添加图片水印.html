@@ -14,6 +14,16 @@
         <input id="shuiyinText" value="" type="text" />
         <button id="shuiyinBtn" class="mui-btn mui-btn-primary" type="button"> 点击添加水印</button>
     </div>
+    <p>
+        toDataURL语法
+    </p>
+    <p>
+        type 可选
+        图片格式，默认为image/png
+        <br/>
+        encoderOptions 可选
+        图片质量。取值范围为0到1。如果指定图片格式为image/jpeg或image/webp。如果超出取值范围，将会使用默认值0.92。其他参数会被忽略。
+    </p>
 </body>
 <script>
     function shuiyin(canvasid, imgurl, addtext) {
