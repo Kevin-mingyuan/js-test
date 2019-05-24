@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active {
+            /* background: #eee; */
+            color: #1e82d2;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li :class=" activeClass == index ? 'active':'' " v-for="(item,index) in arr" :key="index"  @click="getIndex(index)">
+                {{item.name}}
+            </li>
+        </ul>
+        <hr/>
+        <ul>
+            <li :class='{active:index===number}' v-for="(item,index) in arr" :key="index"  @click="getIndex2(index)">
+                {{item.age}}
+            </li>
+        </ul>
+    </div>    
+</body>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            arr:[],
+            activeClass:-1, //默认不选择
+            number:0 //默认第一个元素
+        },
+        mounted(){
+            this.arr = [{name:"kevin1",age:19},{name:"kevin2",age:20},{name:"kevin3",age:21}];
+        },
+        methods:{
+            getIndex(index){
+                console.log(index)
+                this.activeClass = index;
+            },
+            getIndex2(index){
+                this.number = index;
+            }
+        }
+    })
+</script>
+</html>

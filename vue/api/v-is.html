@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>可以实现选项卡 => :is = data内自定义变量 判断条件是组件名字选择加载哪个组件 </p>
+        <button v-on:click="choosencomp('a')">a</button>
+        <button v-on:click="choosencomp('b')">b</button>
+        <button v-on:click="choosencomp('c')">c</button>
+
+        <component :is="whichcomp"></component>
+    </div>
+</body>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        components:{
+            acomp:{
+                template:`<p>这里是组件A</p>`
+            },
+            bcomp:{
+                template:`<p>这里是组件B</p>`
+            },
+            ccomp:{
+                template:`<p>这里是组件C</p>`
+            }
+        },
+        data:{
+            whichcomp:"",
+        },
+        methods:{
+            choosencomp:function(x){
+                this.whichcomp=x+"comp"
+            }
+        }
+
+    })
+</script>
+</html>
