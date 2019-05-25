@@ -22,7 +22,7 @@
         </ul>
         <hr/>
         <ul>
-            <li :class='{active:index===number}' v-for="(item,index) in arr" :key="index"  @click="getIndex2(index)">
+            <li :class='{ active:index === number }' v-for="(item,index) in arr" :key="index"  @click="getIndex2(index)">
                 {{item.age}}
             </li>
         </ul>
