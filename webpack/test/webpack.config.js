@@ -25,7 +25,6 @@ module.exports = {
                     presets:["es2015","react"]        //加载loader的presets
                 }
             },
-
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
