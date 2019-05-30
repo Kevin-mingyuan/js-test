@@ -1,0 +1,21 @@
+/*定义1px边框像素*/
+@mixin border-1px($color){
+    position: relative;
+    &:after{
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border: 1px solid $color;
+        width: 100%;
+        margin:0;
+        padding: 0;
+        box-sizing: border-box;
+        content:"";
+    }
+}
+/*定义rem适配函数*/
+@function px2rem($px){
+    $rem:25;
+    @return ($px/$rem) + rem;
+  }
