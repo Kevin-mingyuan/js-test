@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-        <Header/>
+        <Header :seller="seller" />
          <div class="tab">
             <div class="tab-item">
                 <router-link :to="{path:'/goods'}">商品</router-link>
@@ -19,6 +19,8 @@
 <script>
 import Header from '@/components/header/Header';
 
+const ERR_OK = 0; //请求状态码 成功时候
+
 export default {
   name: 'Home',
   components:{
@@ -26,8 +28,19 @@ export default {
   },
   data () {
     return {
-
+      seller:{}
     }
+  },
+  created(){
+      this.$http.get("http://localhost:5000/api/seller")
+      .then(res=>{
+        var data = res.data;
+        if(data.errno === ERR_OK){
+          console.log("success");
+          this.seller = data.seller;
+          // console.log(this.seller)
+        }
+      })
   }
 }
 </script>

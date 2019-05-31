@@ -19,3 +19,12 @@
     $rem:25;
     @return ($px/$rem) + rem;
 }
+
+// 处理@2x 和 @3x 的图片
+@mixin bg-image($url){
+    background-image:url($url + "@2x.png");
+
+    @media (-webkit-min-device-pixel-ratio:3),(min-device-pixel-ratio:3){
+        background-image:url($url + "@3x.png");
+    }
+}

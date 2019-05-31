@@ -1,0 +1,9 @@
+
+@font-face {  
+    /*自定义名字*/
+    font-family: 'pf';
+    /*路径名字*/
+    src: url('PingFangjt.ttf'); 
+    font-weight: normal;  
+    font-style: normal;  
+}  

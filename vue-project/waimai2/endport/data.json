@@ -1,7 +1,8 @@
 {
     "seller":{
         "name":"粥品相仿",
-        "description":"蜂鸟",
+        "description":"蜂鸟速送",
+        "avatar":"123123",
         "deliveryTime":38,
         "score":4.2,
         "serviceScore":4.1,

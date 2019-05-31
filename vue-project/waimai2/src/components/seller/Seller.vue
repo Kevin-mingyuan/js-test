@@ -1,6 +1,6 @@
 <template>
     <div class='seller-wrap'>
-        i am seller;
+       
     </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     components: {},
     data() {
         return {
-
+            
         };
     },
 
@@ -20,7 +20,9 @@ export default {
     watch: {},
     methods: {},
 
-    created() {},
+    created() {
+       
+    },
 
     mounted() {},
 

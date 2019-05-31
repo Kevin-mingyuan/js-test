@@ -7,6 +7,10 @@ import router from './router'
 //适配rem
 import './lib/rem';
 
+//配置axios
+import axios from 'axios';
+Vue.prototype.$http = axios;
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
