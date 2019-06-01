@@ -4,6 +4,7 @@
             <div class="avatar">
                 <img :src="seller.avatar" width="64" height="64" :alt="seller.avatar">
             </div>
+            <!-- 主要内容 -->
             <div class="content">
                 <div class="title"> 
                     <span class="brand">品牌</span>
@@ -18,18 +19,47 @@
                     <span class="text">{{seller.supports[0].description}}</span>
                 </div>
             </div>
+            <!-- 右边浮层 -->
+            <div v-if="seller.supports" class="support-count" @click="showDetail">
+                <span class="count">{{seller.supports.length}}个</span>
+                <i class="icon-keyboard_arrow_right"></i>
+            </div>
         </div>
-        <div class="bulletion-wrapper">
-            
+         <!-- 公告详情 -->
+        <div class="bulletion-wrapper" @click="showDetail">
+            <span class="bulletin-title">公告</span>
+            <span class="bulletin-text">{{seller.bulletin}}</span>
+            <span class="icon-keyboard_arrow_right2"></span>
+        </div>
+
+        <!-- 详情浮层 -->
+        <div v-show="detailShow" class="detail">
+            <!-- 外层容器清楚浮动 -->
+            <div class="detail-wrapper clearfix">
+                <!-- 内容层 -->
+                <div class="detail-main">
+                    <h1 class="name">{{seller.name}}</h1>
+                    <div class="star_wrapper">
+                        <Star :size="24" :score="seller.score" />
+                    </div>
+                </div>
+            </div>
+            <!-- 关闭按钮 -->
+            <div class="detail-close">
+                <i class="icon-close" @click="detailHide"></i>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import Star from '../star/Star';
 
 export default {
     name:'Header',
-    components: {},
+    components: {
+        Star,
+    },
     props:{
         seller:{
             type:Object
@@ -37,14 +67,21 @@ export default {
     },
     data() {
         return {
-
+            detailShow:false,
         };
     },
 
     computed: {},
 
     watch: {},
-    methods: {},
+    methods: {
+        showDetail(){
+            this.detailShow = true;
+        },
+        detailHide(){
+            this.detailShow = false;
+        }
+    },
 
     created() {
         console.log(this.$props);
@@ -75,14 +112,17 @@ export default {
     @import '../../common/font/font.css';
 
     .header-wrap{
-        display: flex;
         color: #fff;
-        background: #000;
+        background: #999;
         font-family: 'pf';
 
         .content-wrapper{
             padding:px2rem(24) px2rem(12) px2rem(18) px2rem(24); 
             font-size: 0;
+            width: 100%;
+            display: flex;
+            position: relative;
+
             .avatar{
                 display: inline-block;
                 vertical-align: middle;
@@ -93,6 +133,7 @@ export default {
                     border: 1px solid red;
                 }
             }
+
             .content{
                 font-size: 12px;
                 display: inline-block;
@@ -115,6 +156,12 @@ export default {
                     .name{
                         font-size: 14px;
                     }
+
+                    .star_wrapper{
+                        display: inline-block;
+                        margin-top: px2rem(18);
+                        padding: px2rem(2) 0;
+                    }
                 }
 
                 .description{
@@ -124,6 +171,7 @@ export default {
                 }
 
                 .support{
+
                     .icon{
                         display: inline-block;
                         width: px2rem(12);
@@ -168,6 +216,130 @@ export default {
                                 content:"棒"
                             }
                         }
+                    }
+
+                    .text{
+                        line-height: px2rem(10);
+                        font-size: 10px;
+
+                    }
+                }
+            }
+
+            .support-count{
+                position: absolute;
+                bottom: px2rem(18);
+                right: px2rem(52);
+                background: rgba(0,0,0,0.2);
+                padding: 0 px2rem(8);
+                // width: px2rem(30);
+                height: px2rem(24);
+                line-height: px2rem(24);
+                border-radius: px2rem(14);
+                text-align: center;
+                font-size: 12px;
+
+                .count{
+                    font-size: px2rem(10);
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+
+                .icon-keyboard_arrow_right{
+                    font-size: px2rem(10);
+                    display: inline-block;
+                    vertical-align: middle;
+                    padding-left: px2rem(3);
+                    margin-top: px2rem(-2);
+                    &:after{
+                        content: ">",
+                    }
+                }
+            }
+
+            
+        }
+
+        .bulletion-wrapper{
+            width: 100%;
+            height: px2rem(28);
+            padding-left: px2rem(15);
+            width: px2rem(360);
+            display: flex;
+            line-height: px2rem(28);
+
+            .bulletin-title{
+                margin-right: px2rem(6);
+                background: #fff;
+                color: #ddd;
+                height: px2rem(20);
+                line-height: px2rem(20);
+                border-radius: px2rem(2);
+                font-size: 12px;
+                margin-top:px2rem(4);
+            }
+
+            .bulletin-text{
+                width: px2rem(300);
+                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .icon-keyboard_arrow_right2{
+                display: inline-block;
+                padding-left: px2rem(10);
+                &:after{
+                    content: ">"
+                }
+            }
+
+        }
+
+        .detail{
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(7, 17, 27, 0.8);
+
+            .detail-wrapper{
+                min-height: 100%;
+                width: 100%;
+
+                .detail-main{
+                    margin-top: px2rem(64);
+                    padding-bottom: px2rem(64);
+
+                    .name{
+                        line-height: px2rem(16);
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .detail-close{
+                position: relative;
+                width: px2rem(32);
+                height: px2rem(32);
+                margin: px2rem(-64) auto 0 auto;
+                clear: both;
+                text-align: center;
+
+                .icon-close{
+                    display: inline-block;
+                    &:after{
+                        content:"x";
+                        font-size: 32px;
+                        width: px2rem(32);
+                        height: px2rem(32);
+                        text-align: center;
                     }
                 }
             }

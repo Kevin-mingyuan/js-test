@@ -4,7 +4,7 @@
         "description":"蜂鸟速送",
         "avatar":"123123",
         "deliveryTime":38,
-        "score":4.2,
+        "score":3.7,
         "serviceScore":4.1,
         "foodScore":4.3,
         "rankRate":69.2,
@@ -12,7 +12,7 @@
         "deliveryPrice":4,
         "ratingCount":24,
         "sellCount":90,
-        "bulletin":"介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍",
+        "bulletin":"粥很好喝百年传承秘技入口爽滑十分可口啦啦啦啦啦啦啦啦啦啦啦啦阿拉啊",
         "supports":[
             {
                 "type":0,
@@ -25,6 +25,14 @@
             {
                 "type":2,
                 "description":"在线支付满38减5"
+            },
+            {
+                "type":3,
+                "description":"超级优惠"
+            },
+            {
+                "type":4,
+                "description":"特价减免啦啦啦啦"
             }
         ]
     },
