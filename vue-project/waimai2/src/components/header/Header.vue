@@ -32,23 +32,51 @@
             <span class="icon-keyboard_arrow_right2"></span>
         </div>
 
-        <!-- 详情浮层 -->
-        <div v-show="detailShow" class="detail">
-            <!-- 外层容器清楚浮动 -->
-            <div class="detail-wrapper clearfix">
-                <!-- 内容层 -->
-                <div class="detail-main">
-                    <h1 class="name">{{seller.name}}</h1>
-                    <div class="star_wrapper">
-                        <Star :size="24" :score="seller.score" />
+        <transition 
+            name="fade"
+        >
+            <!-- 详情浮层详情弹出层 -->
+            <div v-show="detailShow" class="detail">
+                <!-- 外层容器清楚浮动 -->
+                <div class="detail-wrapper clearfix">
+                    <!-- 内容层 -->
+                    <div class="detail-main">
+                        <h1 class="name">{{seller.name}}</h1>
+                        <div class="star_wrapper">
+                            <!-- size代表星星大小 score代表星星评分多少 -->
+                            <Star :size="36" :score="seller.score" />
+                        </div>
+                        <!-- 标题 优惠信息 -->
+                        <div class="title">
+                            <div class="line"></div>
+                            <div class="text">优惠信息</div>
+                            <div class="line"></div>
+                        </div>
+                        <!-- 列表 -->
+                        <ul v-if="seller.supports" class="supports">
+                            <li class="support-item" v-for="(item,index) in seller.supports" :key="index">
+                                <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+                                <span class="text">{{seller.supports[index].description}}</span>
+                            </li>
+                        </ul>
+                        <!-- 标题  商家公告 -->
+                        <div class="title">
+                            <div class="line"></div>
+                            <div class="text">商家公告</div>
+                            <div class="line"></div>
+                        </div>
+                        <!-- 商品介绍 -->
+                        <div class="bulletin">
+                            <p class="content">{{seller.bulletin}}</p>
+                        </div>
                     </div>
                 </div>
+                <!-- 关闭按钮 -->
+                <div class="detail-close">
+                    <i class="icon-close" @click="detailHide"></i>
+                </div>
             </div>
-            <!-- 关闭按钮 -->
-            <div class="detail-close">
-                <i class="icon-close" @click="detailHide"></i>
-            </div>
-        </div>
+        </transition>
     </div>
 </template>
 
@@ -157,11 +185,7 @@ export default {
                         font-size: 14px;
                     }
 
-                    .star_wrapper{
-                        display: inline-block;
-                        margin-top: px2rem(18);
-                        padding: px2rem(2) 0;
-                    }
+                    
                 }
 
                 .description{
@@ -297,6 +321,13 @@ export default {
 
         }
 
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+
         .detail{
             position: fixed;
             z-index: 100;
@@ -321,6 +352,104 @@ export default {
                         font-size: 16px;
                         font-weight: 700;
                     }
+
+                    .star_wrapper{
+                        display: inline-block;
+                        margin-top: px2rem(18);
+                        padding: px2rem(2) 0;
+                        text-align: center;
+                        width: 100%;
+                    }
+
+                    .title{
+                        display: flex;
+                        width: 80%;
+                        margin: px2rem(28) auto px2rem(24) auto;
+
+                        .line{
+                            flex: 1;
+                            position: relative;
+                            top: px2rem(-6);
+                            border-bottom:1px solid rgba(255, 255, 255, 0.2);
+                        }
+
+                        .text{
+                            padding: 0 px2rem(12);
+                            font-size: 14px;
+                            font-weight: 700;
+                        }
+                    }
+
+                    .supports{
+                        width: 80%;
+                        margin: 0 auto;
+
+                        .support-item{
+                            padding: 0 px2rem(12);
+                            margin-bottom: px2rem(12);
+                            &:last-child{
+                                margin-right: 0;
+                            }
+
+                            .icon{
+                                display: inline-block;
+                                width: px2rem(12);
+                                height: px2rem(12);
+                                margin-right: px2rem(4);
+                                background-size: px2rem(12) px2rem(12);
+                                background-repeat: no-repeat;
+
+                                // 重新定义同级class 放入数组进行判断下标
+                                &.decrease{
+                                    border: 1px solid red;
+                                    background: red;
+                                    &:after{
+                                        content:"减"
+                                    }
+                                }
+                                &.descount{
+                                    border:1px solid blue;
+                                    background: blue;
+                                    &:after{
+                                        content:"折"
+                                    }
+                                }
+                                &.guarantee{
+                                    border: 1px solid orange;
+                                    background: orange;
+                                    &:after{
+                                        content:"优"
+                                    }
+                                }
+                                &.invoice{
+                                    border: 1px solid aqua;
+                                    background: aqua;
+                                    &:after{
+                                        content:"速"
+                                    }
+                                }
+                                &.special{
+                                    border: 1px solid blueviolet;
+                                    background: blueviolet;
+                                    &:after{
+                                        content:"棒"
+                                    }
+                                }
+                            }
+                        
+                        }
+                    }
+
+                    .bulletin{
+                        width: 80%;
+                        margin:0 auto;
+
+                        .content{
+                            padding: 0 px2rem(12);
+                            line-height: px2rem(24);
+                            font-size: 12px;
+                        }
+                    }
                 }
             }
 
@@ -344,5 +473,6 @@ export default {
                 }
             }
         }
+
     }
 </style>
