@@ -3,13 +3,13 @@
         <Header :seller="seller" />
          <div class="tab">
             <div class="tab-item">
-                <router-link :to="{path:'/goods'}">商品</router-link>
+                <router-link :to="{name:'Goods'}">商品</router-link>
             </div>
             <div class="tab-item">
-              <router-link :to="{path:'/ratings'}">评论</router-link>
+              <router-link :to="{name:'Ratings'}">评论</router-link>
             </div>
             <div class="tab-item">
-              <router-link :to="{path:'/seller'}">商家</router-link>
+              <router-link :to="{name:'Seller'}">商家</router-link>
             </div>
         </div>
         <router-view></router-view>

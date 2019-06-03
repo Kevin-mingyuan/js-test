@@ -11,21 +11,21 @@ export default new Router({
       component: () => import("@/components/Home"),
       children:[
         {
-          path: '/goods',
+          path: 'goods',
           name: 'Goods',
           component: () => import("@/components/goods/Goods")
         },
         {
-          path: '/ratings',
+          path: 'ratings',
           name: 'Ratings',
           component: () => import("@/components/ratings/Ratings")
         },
         {
-          path: '/seller',
+          path: 'seller',
           name: 'Seller',
           component: () => import("@/components/seller/Seller")
         },
-      ]
+      ],
     },
     
    
