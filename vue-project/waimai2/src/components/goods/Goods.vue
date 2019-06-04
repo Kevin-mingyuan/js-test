@@ -12,6 +12,7 @@
 				</li>
 			</ul>
 		</div>
+		
 		<!-- 商品详情 -->
 		<div class="foods-wrapper" ref="foodsWrapper"> 
 			<ul>
@@ -39,15 +40,21 @@
 				</li>
 			</ul>
 		</div>
+
+		<!-- 购物车组件 -->
+		<ShopCart/>
 	</div>
 </template>
 
 <script>
-	import BScroll from '@better-scroll/core';
+	import BScroll from 'better-scroll'; //滚动插件
+	import ShopCart from '../shopcart/ShopCart'; //底部购物车组件
 
 	export default {
 		name: 'Goods',
-		components: {},
+		components: {
+			ShopCart,
+		},
 		props: {
 			seller: {
 				type: Object,
@@ -83,9 +90,12 @@
 				});
 
 				this.foodsScroll = new BScroll(this.$refs.foodsWrapper,{
+					startY:true,
+					scrollY:true,
+					freeScroll:true,
+					tap:true,
 					probeType:3,//滚动实时监听
 				});
-				console.log(new BScroll(this.$refs.aa,{}) , '1231312321321321321')
 				//监听滚动事件
 				this.foodsScroll.on('scroll',(pos)=>{
 					this.scrollY = Math.abs(Math.round(pos.y)); 
@@ -112,13 +122,11 @@
 				if(!event._constructed){
 					return;
 				}
-				console.log("suc")
 				let foodList1 = this.$refs.foodsWrapper.getElementsByClassName("food-list-hook") //拿到每个商品对应分类的高度
-				console.log(foodList1 , '12313121331');
+				// console.log(foodList1 , '12313121331');
 				let el = foodList1[index];
-				console.log(el , 1231);
-				console.log(this.foodsScroll , '1231');
-				// this.foodsScroll.scrollToElement(el,300);
+				// console.log(this.foodsScroll.scroller.scrollToElement , '1231'); //源码已经更改
+				this.foodsScroll.scroller.scrollToElement(el,300);
 			}
 		},
 
