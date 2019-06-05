@@ -41,8 +41,8 @@
 			</ul>
 		</div>
 
-		<!-- 购物车组件 -->
-		<ShopCart/>
+		<!-- 底部购物车组件  参数：配送费 起送费-->
+		<ShopCart :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice" />
 	</div>
 </template>
 
