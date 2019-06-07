@@ -39,7 +39,7 @@ export default {
     props:{
         selectFoods:{  //选择多少数量状态数组 默认空数组 后台数据传递 price=>单价 count=>数量
             type:Array,
-            default:() => [{price:100 ,count:1}],
+            default:() => [],
         },
         deliveryPrice:{
             type:Number,
@@ -63,7 +63,6 @@ export default {
             this.selectFoods.forEach((item,index)=>{
                 total += item.price * item.count; //商品单价*商品数量
             })
-
             return total; //返回购买总数
         },
         //购买的商品总和
@@ -80,7 +79,8 @@ export default {
                 return `￥${this.minPrice}元起送`;
             }else if(this.totalPrice < this.minPrice){
                 return `还差￥${this.minPrice - this.totalPrice}元起送`;
-            }else if(this.totalPrice > this.minPrice){
+            }else if(this.totalPrice >= this.minPrice){
+                console.log(this.totalPrice , this.minPrice);
                 return `去结算`;
             }
         },

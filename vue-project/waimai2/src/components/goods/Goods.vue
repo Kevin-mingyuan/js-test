@@ -34,6 +34,10 @@
 									<span class="now">￥{{food.price}}</span>
 									<span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
 								</div>
+								<!-- 购物车加减购买 每个商品对象{} -->
+								<div class="cartcontrol-wrapper">
+									<Cartcontrol :food="food" />
+								</div>
 							</div>
 						</li>
 					</ul>
@@ -42,18 +46,20 @@
 		</div>
 
 		<!-- 底部购物车组件  参数：配送费 起送费-->
-		<ShopCart :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice" />
+		<ShopCart :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice" :selectFoods="selectFoods" />
 	</div>
 </template>
 
 <script>
 	import BScroll from 'better-scroll'; //滚动插件
 	import ShopCart from '../shopcart/ShopCart'; //底部购物车组件
+	import Cartcontrol from '../cartcontrol/Cartcontrol'; //购买商品加减
 
 	export default {
 		name: 'Goods',
 		components: {
 			ShopCart,
+			Cartcontrol
 		},
 		props: {
 			seller: {
@@ -62,7 +68,7 @@
 		},
 		data() {
 			return {
-				goods: [],
+				goods: [], //所有分类下的所有商品
 				listHeight:[], //存入每个详情商品分类的高度		
 				scrollY:0, //定义变量 判断右侧y值多少即滚动至顶部的距离 然后判断是在listHieght哪个范围内 返回其数组内的下标即是左侧对应下标	
 			};
@@ -74,11 +80,24 @@
 					let height1 = this.listHeight[i];
 					let height2 = this.listHeight[i+1];
 
-					if(!height2 ||(this.scrollY >= height1 && this.scrollY < height2)){
+					if(!height2 ||(this.scrollY >= height1 && this.scrollY < height2)){ //判断在数组内哪两个数之间
 						return i;
 					}
 				}
 				return 0;
+			},
+			//计算购买了几件商品
+			selectFoods(){
+				let foods = [];
+				this.goods.forEach((good,index)=>{
+					good.food.forEach((food)=>{
+						//判断count是否有 push到数组内 
+						if(food.count){
+							foods.push(food);
+						}
+					})
+				});
+				return foods;//传入购物车组件内进行计算
 			}
 		},
 		watch: {},
@@ -95,6 +114,7 @@
 					freeScroll:true,
 					tap:true,
 					probeType:3,//滚动实时监听
+					click:true,
 				});
 				//监听滚动事件
 				this.foodsScroll.on('scroll',(pos)=>{
@@ -308,6 +328,7 @@
 				
 				.content{
 					flex: 1;
+					position: relative;
 
 					.name{
 						margin: px2rem(2) 0 px2rem(8) 0;
@@ -349,6 +370,13 @@
 							font-size: 10px;
 							color: rgb(147, 153, 159);
 						}
+					}
+
+					.cartcontrol-wrapper{
+						position: absolute;
+						right: 0;
+						bottom:px2rem(12);
+						   
 					}
 				}
 			}
