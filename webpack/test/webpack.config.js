@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 console.log(__dirname);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //设置css 抽离为一个单独的css
 // const devMode = process.env.NODE_ENV !== 'production'; // 判断当前环境是开发环境还是 部署环境，主要是 mode属性的设置值。
@@ -6,7 +7,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); /
 // const autoprefixer = require('autoprefixer'); //postcss压缩
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //js压缩
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //创建inxde.html 模板
-const CleanWebpackPlugin = require('clean-webpack-plugin'); //每次打包清楚上次打包的文件
+const CleanWebpackPlugin = require('clean-webpack-plugin'); //每次打包清除上次打包的文件
+
 module.exports = {
     mode: 'development', // development ||  production
     entry: './src/index.js',
@@ -49,6 +51,11 @@ module.exports = {
         //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
         // })
        
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': JSON.stringify('production')
+        // }),
+
+        //清除每次打包的dist重复文件
         new CleanWebpackPlugin(),
 
         new HtmlWebpackPlugin({ //index.html模板  在index.html 写入节点 <div id="root"></div>
@@ -87,7 +94,8 @@ module.exports = {
         hot:true, //不用刷新也可以更替
         compress: true, //是否启用压缩
         open:true,
-        port: 3000
+        port: 3000,
+        // historyApiFallback: true, //解决页面刷新路由找不到问题
     }
 };
 

@@ -14,7 +14,7 @@
 //   document.body.appendChild(createDomElement());
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+// console.log(process);
 // import Home from "./components/home/home.jsx";
 import App from "./App.jsx";
 

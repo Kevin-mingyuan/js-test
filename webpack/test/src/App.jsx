@@ -1,7 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import Home from './components/home/home.jsx';
-import Home2 from './components/home/home2.jsx';
+import { BrowserRouter as Router, Route, Switch, Redirect,Link } from 'react-router-dom';
+// import {HashRouter as Router, Route, Switch, Redirect,Link} from 'react-router-dom'
+
+import Home from './components/home/Home.jsx';
+import Home2 from './components/home/Home2.jsx';
+
 class App extends React.Component{
     constructor(props){
         super(props);
@@ -13,18 +16,27 @@ class App extends React.Component{
     render(){
         return (
             <Router>
-                <Switch>
-                
-                    {/* <Route ref='aa' exact path='/' component={AA} /> */}
+                <div>
+                    <ul>
+                        <li>
+                            <Link to='/home'>home</Link>
+                        </li>
+                        <li>
+                            <Link to='/home2'>home22</Link>
+                        </li>
+                    </ul>
 
-                    <Route path='/home' component={Home} />
-                    <Route path='/home2' component={Home2} />
+                    <Switch>
+                        {/* <Route ref='aa' exact path='/' component={AA} /> */}
 
+                        <Route path='/home' component={Home} />
+                        <Route path='/home2' component={Home2} />
 
-                    {/* 重定向必须在路由之后 */}
-                    <Redirect to='/home'/> 
+                        {/* 重定向必须在路由之后 exact是精准匹配 */}
+                        <Redirect exact  to='/home'/> 
 
-                </Switch>
+                    </Switch>
+                </div>
             </Router>
         )
     }

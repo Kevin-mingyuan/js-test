@@ -15,7 +15,7 @@ class Home extends React.Component{
         return (
             <div className="hello">
                 <Link to="/home"> hello home </Link>
-                <Link to="/home2"> hello home2 </Link>
+                <Link to="/home2"> hello home2222222 </Link>
                 <p>2222222</p>
             </div>
         )
