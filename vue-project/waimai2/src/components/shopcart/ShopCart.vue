@@ -1,6 +1,6 @@
 <template>
     <div class='shop-cart'>
-        <div class="content">
+        <div class="content" @click="toggleList">
             <div class="content-left">
                 <div class="logo-wrapper">
                     <div class="logo" :class="{'highlight':totalCount>0}">
@@ -11,7 +11,6 @@
                         {{totalCount}}
                     </div>
                 </div>
-                
 
                 <div class="price" :class="{'highlight':totalPrice>0}">
                     ￥{{totalPrice}}元
@@ -28,14 +27,42 @@
                 </div>
             </div>
         </div>
+        <transition 
+            enter-active-class="animated slideInUp"
+            leave-active-class="animated slideOutDown"
+        >
+            <!-- 购买的底部商品列表 -->
+            <div class="shopcart-list" v-if="flod">
+                <div class="list-header">
+                    <h1 class="title">购物车</h1>
+                    <span class="empty">清空</span>
+                </div>
+                <div class="list-content">
+                    <ul>
+                        <li class="food" v-for="(food,index) in selectFoods" :key="index">
+                            <span class="name">{{food.name}}</span>
+                            <div class="price">
+                                <span>￥{{food.price * food.count}}</span>
+                            </div>
+                            <div class="cartcontrol-wrapper">
+                                <Cartcontrol :food="food"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
 <script>
+import Cartcontrol from '../cartcontrol/Cartcontrol'; //购买商品加减
 
 export default {
     name:'ShopCart',
-    components: {},
+    components: {
+        Cartcontrol
+    },
     props:{
         selectFoods:{  //选择多少数量状态数组 默认空数组 后台数据传递 price=>单价 count=>数量
             type:Array,
@@ -52,7 +79,7 @@ export default {
     },
     data() {
         return {
-
+            flod:false, //底部购物车列表默认折叠
         };
     },
 
@@ -91,11 +118,34 @@ export default {
             }else{
                 return 'enough';
             }
-        }
+        },
+        //底部购物车列表
+        // listShow(){
+        //     if(this.totalCount > 0){
+        //         this.flod = true;
+        //         return false;
+        //     }
+
+        //     let show = !this.flod;
+        //     this.flod = !this.flod;
+
+        //     console.log(show , 'showwww');
+        //     return this.flod;
+        // }
     },
 
     watch: {},
-    methods: {},
+    methods: {
+        //判断有没有购买商品
+        toggleList(){
+            if(this.totalCount < 0){
+                //没有商品时候 点击无效
+                return;
+            }
+            this.flod = !this.flod;
+            console.log(this.flod , '123131232')
+        }
+    },
 
     created() {},
 
@@ -240,6 +290,17 @@ export default {
                     }
                 }
             }
+        }
+       
+        
+        .shopcart-list{
+            position: absolute;
+            left: 0;
+            top: px2rem(-200);
+            z-index: -1;
+            width: 100%;
+            min-height: px2rem(200);
+            background: #fff;
         }
     }
 

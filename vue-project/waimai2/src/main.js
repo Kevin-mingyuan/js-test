@@ -11,6 +11,9 @@ import './lib/rem';
 import axios from 'axios';
 Vue.prototype.$http = axios;
 
+import animated from 'animate.css';
+Vue.use(animated);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
