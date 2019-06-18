@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<import src="./index-foods-template/index-foods-template.wxml" />
+<view class="container">
+    <swiper 
+      indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" 
+      interval="{{interval}}" 
+      duration="{{duration}}"
+      indicator-dots="indicatorDots"
+      indicator-active-color="#1cbcff"
+      circular="circular"
+      class='sw-wrap'
+    >
+        <swiper-item wx:for="{{imgUrls}}" wx:key="{{item}}" class="sw-item-wrap">
+          <image src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+    </swiper>
+    <!-- 客户详情菜单 -->
+    <template is="foods" data="{{dataList}}"/>
+</view>

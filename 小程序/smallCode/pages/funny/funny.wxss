@@ -1,0 +1,2 @@
+/* pages/funny/funny.wxss */
+@import './funny-item-template/funny-item-template.wxss';

@@ -1,0 +1,23 @@
+<template name="foods">
+<view class='foods-wrap'>
+  <view class='foods-title'>
+    客户Detail
+  </view>
+  <block wx:for="{{dataList}}" wx:key="{{key}}">
+    <view class='foods-item'>
+      <view class='foods-item-title'>
+        <text>姓名:{{item.name}}</text>
+      </view>
+      <view class='foods-item-info'>
+        <text>年龄:{{item.age}}</text>
+        <text>性别:{{item.sex}}</text>
+      </view>
+      <view class='foods-item-menu'>
+        <block wx:for="{{item.foods}}" wx:key="{{item.foods}}">
+          <text class='foods-item-menu-title'>{{item}}</text>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
+</template>

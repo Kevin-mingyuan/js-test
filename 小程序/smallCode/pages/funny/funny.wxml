@@ -1,0 +1,10 @@
+<import src="./funny-item-template/funny-item-template.wxml" />
+
+<view>
+  <view>
+      <text>请选择下面有趣的东东</text>
+  </view>
+  <view class='funny-main'>
+      <template is="funnyItem" />  
+  </view>
+</view>

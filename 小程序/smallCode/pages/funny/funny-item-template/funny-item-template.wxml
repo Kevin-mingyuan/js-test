@@ -1,0 +1,11 @@
+<template name="funnyItem">
+  <view class='funny-item'>
+      <view class='funny-item-input'>
+          <input type='text' value='' /> 
+          <text class='funny-item-sure' bindinput="sure">确定</text>
+      </view>
+      <view class='funny-item-main'>
+        ...
+      </view>
+  </view>
+</template>

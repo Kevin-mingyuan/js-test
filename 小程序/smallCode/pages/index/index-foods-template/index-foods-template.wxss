@@ -1,0 +1,33 @@
+/* 文章列表 */
+.foods-title{
+  width: 100%;
+  text-align: center;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #eee;
+}
+
+.foods-item{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ddd;
+}
+.foods-item:last-child{
+  border-bottom: 0;
+}
+
+.foods-item-title{
+  color: #1cbcff;
+  margin-bottom: 10rpx;
+  padding-left: 20rpx;
+}
+.foods-item-info{
+  margin-bottom: 10rpx;
+  padding-left: 20rpx;
+}
+.foods-item-menu{
+  display: flex;
+  flex-wrap: wrap;
+}
+.foods-item-menu-title{
+    padding: 0 20rpx;
+}
