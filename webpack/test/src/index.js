@@ -18,4 +18,6 @@ import ReactDOM from 'react-dom';
 // import Home from "./components/home/home.jsx";
 import App from "./App.jsx";
 
+console.log(process)
+
 ReactDOM.render(<App />, document.getElementById('root'));
