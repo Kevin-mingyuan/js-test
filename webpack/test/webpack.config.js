@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //创建inxde.html 模
 const CleanWebpackPlugin = require('clean-webpack-plugin'); //每次打包清除上次打包的文件
 
 module.exports = {
-    mode: 'development', // development ||  production
+    mode: 'production', // development ||  production
     entry: './src/index.js',
     output: {
         filename:"[name][hash].js",

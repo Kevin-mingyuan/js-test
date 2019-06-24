@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    ipt1:"1",//第一个input的值
   },
 
   /**
@@ -13,23 +13,7 @@ Page({
    */
   onLoad: function (options) {
 
-    let obj = { appkey:"a1e212fc92c2e9fa", keyword: "梦见发财", pagenum: 1, pagesize:10};
-      wx:wx.request({
-        url: 'https://api.jisuapi.com/dream/search',
-        data: obj,
-        header: {},
-        method: 'GET',
-        dataType: 'json',
-        success: function(res) {
-          console.log(res)
-        },
-        fail: function(res) {
-          console.log(res);
-        },
-        complete: function(res) {
-          console.log(res);
-        },
-      })
+   
   },
 
   /**
@@ -83,7 +67,25 @@ Page({
 
 
   //确定
-  sure(e) {
-    console.log("1");
+  sure(event) {
+    console.log(event);
+  //   let obj = { appkey: "a1e212fc92c2e9fa", keyword: "梦见发财", pagenum: 1, pagesize: 10 };
+  //   wx: wx.request({
+  //     url: 'https://api.jisuapi.com/dream/search',
+  //     data: obj,
+  //     header: {},
+  //     method: 'GET',
+  //     dataType: 'json',
+  //     success: function (res) {
+  //       console.log(res)
+  //     },
+  //     fail: function (res) {
+  //       console.log(res);
+  //     },
+  //     complete: function (res) {
+  //       console.log(res);
+  //     },
+  //   })
   }
+  
 })

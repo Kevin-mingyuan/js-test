@@ -1,8 +1,8 @@
 <template name="funnyItem">
   <view class='funny-item'>
       <view class='funny-item-input'>
-          <input type='text' value='' /> 
-          <text class='funny-item-sure' bindinput="sure">确定</text>
+          <input type='text' value='{{ipt1}}' /> 
+          <text class='funny-item-sure' data-ipt1="{{ipt1}}" catchtap="sure">确定</text>
       </view>
       <view class='funny-item-main'>
         ...
