@@ -16,6 +16,17 @@ module.exports = {
     module:{
         rules:[
             {
+                test:/\.(js|jsx)$/,
+                use:[{ 
+                    loader:"babel-loader",
+                    // options:{
+                    //     // presets: ['@babel/preset-es2015',"@babel/preset-react"]
+                    // }
+                }],
+                exclude:/node_modules/, //不加载这个文件
+                
+            },
+            {
                 test:/\.(c|sa|le)ss$/,
                 use:[
                     {
