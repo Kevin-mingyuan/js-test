@@ -8,7 +8,9 @@ let ab = () =>{
 ab();
 import './common/common.css';
 console.log(aa);
-console.log('123123');
+console.log(process.env);
+console.log($, 'jquery123123');
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 

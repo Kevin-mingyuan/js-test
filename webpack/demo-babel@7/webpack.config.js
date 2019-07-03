@@ -1,3 +1,5 @@
+
+const webpack = require('webpack');
 const path = require('path');
 
 //html模板插件
@@ -9,12 +11,19 @@ const { CleanWebpackPlugin }  = require("clean-webpack-plugin");
 //抽离css样式
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 
+//压缩css样式 
+const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
+
+//压缩js
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+
+console.log(process.env.NODE_ENV);
 
 module.exports = {
-    mode:"development",
+    mode:process.env.NODE_ENV, //devalopment || production
     entry:"./src/index.js",
     output:{
-        filename:"bundle.[hash:8].js",
+        filename:"js/bundle.[hash:8].js",
         path:path.resolve(__dirname,"dist"),
     },
     module:{
@@ -56,6 +65,11 @@ module.exports = {
     },
     plugins:[
 
+        //默认全局变量使用
+        new webpack.ProvidePlugin({
+            $:"jquery",
+        }),
+
         //模板html插件
         new HtmlWebpackPlugin({
             title:"test App", //模板头部名字
@@ -64,12 +78,25 @@ module.exports = {
             inject: 'body' //打包到body底部
         }),
 
+        //压缩css
+        new OptimizeCssAssetsWebpackPlugin({}),
+
+        //抽离单独css
         new miniCssExtractPlugin({
-            filename:'[name][hash:8].css',
+            filename:'css/[name].[hash:8].css',
             chunkFilename: '[id].css',
         }),
 
         //清除每次hash打包重复
         new CleanWebpackPlugin({})
-    ]
+    ],
+    //优化打包策略
+    optimization:{
+        //压缩代码
+        minimizer:[
+            new UglifyjsWebpackPlugin({
+                cache:true,
+            })
+        ]
+    }
 }
